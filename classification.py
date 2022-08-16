@@ -37,7 +37,7 @@ def classify():
         "frames/Test", seed=1337, image_size=image_size, batch_size=batch_size, shuffle=True
     )
 
-    model_fire = load_model('Output/Models/model_fire_resnet_not_weighted_40_no_metric_simple')
+    model_fire = load_model('Output/Models/model_fire_resnet_weighted_40_no_metric_simple')
 
     _ = model_fire.evaluate(test_ds, batch_size=batch_size)
 
@@ -48,11 +48,11 @@ def classify():
         print(name, ': ', value)
     print()
 
-    cm = np.array([[results_eval[1], results_eval[4]], [results_eval[2], results_eval[3]]])
+    cm = np.array([[results_eval[0]], [results_eval[1]]])
     cm_plot_labels = ['Fire', 'No Fire']
     plot_confusion_matrix(cm=cm, classes=cm_plot_labels, title='Confusion Matrix')
 
-    model_file = 'Output/Models/h5model/Keras_not_weighted_40_no_metric_simple/save_at_%d.h5' % 37
+    model_file = 'Output/Models/h5model/Keras_weighted_40_no_metric_simple/save_at_%d.h5' % 37
     model_fire = load_model(model_file)
     test_fire_ds = tf.keras.preprocessing.image_dataset_from_directory(
         "frames/confusion_test/Fire_test", seed=1337, image_size=image_size, batch_size=batch_size, shuffle=True)
