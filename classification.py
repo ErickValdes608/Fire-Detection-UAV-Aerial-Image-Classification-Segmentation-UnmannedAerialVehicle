@@ -33,24 +33,24 @@ def classify():
     data set.
     :return: None, Plot the Confusion matrix for the test data on the binary classification
     """
-    test_ds = tf.keras.preprocessing.image_dataset_from_directory(
-        "frames/Test", seed=1337, image_size=image_size, batch_size=batch_size, shuffle=True
-    )
+    #test_ds = tf.keras.preprocessing.image_dataset_from_directory(
+    #    "frames/Test", seed=1337, image_size=image_size, batch_size=batch_size, shuffle=True
+    #)
 
-    model_fire = load_model('Output/Models/model_fire_resnet_weighted_40_no_metric_simple')
+    #model_fire = load_model('Output/Models/model_fire_resnet_weighted_40_no_metric_simple')
 
-    _ = model_fire.evaluate(test_ds, batch_size=batch_size)
+    #_ = model_fire.evaluate(test_ds, batch_size=batch_size)
 
-    best_model_fire = load_model('save_at_25.h5') #Output/Models/h5model/keras/
-    results_eval = best_model_fire.evaluate(test_ds, batch_size=batch_size)
+    #best_model_fire = load_model('save_at_25.h5') #Output/Models/h5model/keras/
+    #results_eval = best_model_fire.evaluate(test_ds, batch_size=batch_size)
 
-    for name, value in zip(model_fire.metrics_names, results_eval):
-        print(name, ': ', value)
-    print()
+    #for name, value in zip(model_fire.metrics_names, results_eval):
+    #    print(name, ': ', value)
+    #print()
 
-    cm = np.array([[results_eval[0]], [results_eval[1]]])
+    #cm = np.array([[results_eval[0]], [results_eval[1]]])
     cm_plot_labels = ['Fire', 'No Fire']
-    plot_confusion_matrix(cm=cm, classes=cm_plot_labels, title='Confusion Matrix')
+    #plot_confusion_matrix(cm=cm, classes=cm_plot_labels, title='Confusion Matrix')
 
     model_file = 'save_at_%d.h5' % 37 #Output/Models/h5model/Keras_weighted_40_no_metric_simple/
     model_fire = load_model(model_file)
