@@ -102,9 +102,10 @@ def plot_confusion_matrix(cm, classes, normalize=False, title='Confusion matrix'
     plt.tight_layout()
     plt.ylabel('True label', size=12, fontweight='bold')
     plt.xlabel('Predicted label', size=12, fontweight='bold')
-    # file_pdf = 'Output/Figures/confusion_matrix.pdf'
+    file_pdf = 'Output/Figures/confusion_matrix.pdf'
     file_figobj = 'Output/FigureObject/confusion_matrix.fig.pickle'
     pickle.dump(fig_conf, open(file_figobj, 'wb'))
+    plt.savefig(file_pdf, bbox_inches='tight')
 
 
 def plot_roc(name, fpr, tpr, **kwargs):

@@ -41,7 +41,7 @@ def classify():
 
     _ = model_fire.evaluate(test_ds, batch_size=batch_size)
 
-    best_model_fire = load_model('Output/Models/h5model/keras/save_at_25.h5')
+    best_model_fire = load_model('save_at_25.h5') #Output/Models/h5model/keras/
     results_eval = best_model_fire.evaluate(test_ds, batch_size=batch_size)
 
     for name, value in zip(model_fire.metrics_names, results_eval):
@@ -52,7 +52,7 @@ def classify():
     cm_plot_labels = ['Fire', 'No Fire']
     plot_confusion_matrix(cm=cm, classes=cm_plot_labels, title='Confusion Matrix')
 
-    model_file = 'Output/Models/h5model/Keras_weighted_40_no_metric_simple/save_at_%d.h5' % 37
+    model_file = 'save_at_%d.h5' % 37 #Output/Models/h5model/Keras_weighted_40_no_metric_simple/
     model_fire = load_model(model_file)
     test_fire_ds = tf.keras.preprocessing.image_dataset_from_directory(
         "frames/confusion_test/Fire_test", seed=1337, image_size=image_size, batch_size=batch_size, shuffle=True)
